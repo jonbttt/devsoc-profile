@@ -61,6 +61,75 @@
             color: #fff;
         }
 
+        .card {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            background-position: center;
+            background-size: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .card::after {
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            background-position: center;
+            background-size: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: bold;
+            transition: all 0.25s;
+        }
+
+        .card-1 {
+            background-image: url("img/btr.gif");
+        }
+
+        .card-2 {
+            background-image: url("img/lain.gif");
+        }
+
+        .card-3 {
+            background-image: url("img/chiikawa.gif");
+        }
+
+        .card-1::after {
+            background-image: url("img/btr.gif");
+        }
+
+        .card-2::after {
+            background-image: url("img/lain.gif");
+        }
+
+        .card-3::after {
+            background-image: url("img/chiikawa.gif");
+        }
+
+        .card::after {
+            bottom: 0;
+            left: 0;
+            border-radius: 0 100%  0 15px;
+        }
+
+        .card:hover:after {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            transition: all 0.25s;
+        }
+
+        .card-3:hover:after {
+        content: "ILY HACHIWARE UR SO TUFF TWIN ONG";
+        }
     </style>
 </head>
 <body>
@@ -90,6 +159,9 @@
         </div>
 
         <h1>ANIME!!!</h1>
+        <div class="card card-1">Bocchi The Rock!</div>
+        <div class="card card-2">Serial Experiments Lain</div>
+        <div class="card card-3">Chiikawa</div>
         <!-- add flip transition to each gallery item and small vid from each when hovering -->
         <h1>GAMES!!!</h1>
         <!-- add flip transition and gameplay video to each game when hovering -->
