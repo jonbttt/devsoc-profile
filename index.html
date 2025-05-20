@@ -24,6 +24,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 15px;
         }
 
         .container .glass {
@@ -66,12 +67,10 @@
             width: 350px;
             height: 250px;
             background-position: center;
-            background-size: 450px;
+            background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 25px;
-            font-weight: bold;
             border-radius: 15px;
             cursor: pointer;
             }
@@ -84,29 +83,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 25px;
             font-weight: bold;
-            background-color: lightblue;
-            transition: all 0.5s;
+            transition: all 0.25s;
         }
 
         .card::after {
             bottom: 0;
             left: 0;
+            font-size: 0px;
             border-radius: 0 100%  0 15px;
         }
 
         .card:hover:after {
             width: 100%;
             height: 100%;
+            background-position: center;
+            background-size: cover;
             border-radius: 15px;
-            transition: all 0.5s;
+            transition: all 0.25s;
+            font-size: 25px;
+            text-shadow:
+                -1px -1px 0 white,
+                -1px 1px 0 white,
+                1px -1px 0 white,
+                1px 1px 0 white;
         }
-
-        .card:hover:after {
-            content: "HELLO";
-        }
-
 
         .card-1 {
             background-image: url("img/btr.avif");
@@ -117,23 +118,79 @@
         }
 
         .card-3 {
+            background-position: left;
             background-image: url("img/chiikawa.jpg");
         }
 
+        .card-4 {
+            background-image: url("img/mind-game.jpg");
+        }
+
+        .card-5 {
+            background-image: url("img/r6.jpg");
+        }
+
+        .card-6 {
+            background-image: url("img/factorio.jpeg");
+        }
+
+        .card-7 {
+            background-image: url("img/stellaris.jpg");
+        }
+
+        .card-8 {
+            background-position: right;
+            background-image: url("img/cruelty-squad.webp");
+        }
+
         .card-1::after {
+            content: "she just like me frfr";
             background-image: url("img/btr.gif");
         }
 
         .card-2::after {
+            content: "let's all love Lain";
             background-image: url("img/lain.gif");
         }
 
         .card-3::after {
+            content: "ILYSM HACHIWARE UR SO TUFF TWIN ONG";
             background-image: url("img/chiikawa.gif");
         }
 
-        .card-3:hover:after {
-            content: "ILY HACHIWARE UR SO TUFF TWIN ONG";
+        .card-4::after {
+            content: "feels like an acid trip";
+            background-image: url("img/mind-game.gif");
+        }
+
+        .card-5::after {
+            content: "blitz main";
+            background-image: url("img/r6.gif");
+        }
+
+        .card-6::after {
+            content: "the factory must grow the factory must grow the factory must grow the factory must grow the factory must grow";
+            background-image: url("img/factorio.gif");
+        }
+
+        .card-7::after {
+            content: "Space battles n stuff";
+            background-image: url("img/stellaris.gif");
+        }
+
+        .card-8::after {
+            font-family: "MingLiU-ExtB";
+            content: "YOU ARE A FLESH AUTOMATON ANIMATED BY NEUROTRANSMITTERS";
+            color: #0ad210;
+            background-image: url("img/cruelty-squad.gif");
+        }
+
+        .card-8:hover::after {
+            text-shadow:
+                -1px -1px 0 #cc0808,
+                -1px 1px 0 #cc0808,
+                1px -1px 0 #cc0808,
+                1px 1px 0 #cc0808;
         }
 
     </style>
@@ -165,12 +222,28 @@
         </div>
 
         <h1>ANIME!!!</h1>
-        <div class="card card-1">Bocchi The Rock!</div>
-        <div class="card card-2">Serial Experiments Lain</div>
-        <div class="card card-3">Chiikawa</div>
-        <!-- add flip transition to each gallery item and small vid from each when hovering -->
+        <table style="margin-left: auto; margin-right: auto;">
+            <tr>
+                <td><div class="card card-1"></div></td>
+                <td><div class="card card-2"></div></td>
+            </tr>
+            <tr>
+                <td><div class="card card-3"></div></td>
+                <td><div class="card card-4"></div></td>
+            </tr>
+        </table>
+
         <h1>GAMES!!!</h1>
-        <!-- add flip transition and gameplay video to each game when hovering -->
+        <table style="margin-left: auto; margin-right: auto;">
+            <tr>
+                <td><div class="card card-5"></div></td>
+                <td><div class="card card-6"></div></td>
+            </tr>
+            <tr>
+                <td><div class="card card-7"></div></td>
+                <td><div class="card card-8"></div></td>
+            </tr>
+        </table>
     </div>
 
     <div class="page-right">
