@@ -3,21 +3,111 @@
 <head>
     <meta charset="UTF-8" />
     <title>Profile</title>
-    <!--change font to pixel style-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans">
-    <!--move style later-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: TrixieCyrG;
+            src: url("fonts/TrixieCyrG-Plain Regular.otf") format("opentype");
+        }
+
         body {
             font-family: "DM Sans", normal;
             text-align: center;
+            align-items: center;
+            justify-content: center;
+            background-color: gray;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            margin: 2px;
+            height: 100vh;
         }
 
-        .page-left {
-            display: show;
+        p {
+            margin:0
         }
 
-        .page-right {
-            display: show;
+        .contain {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            width: 400px;
+            height: 400px;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .circle-left {
+            left: -200px;
+            background-color: black;
+            color: white;
+        }
+
+        .circle-right {
+            right: -200px;
+            background-color: white;
+            color: black;
+        }
+
+        .circle-expand {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .content {
+            z-index: 15;
+            text-align: center;
+            transition: all 0.25s ease;
+            width: 80%;
+            height: 100%;
+            position: relative;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .page-main {
+            padding-top: 35vh;
+            opacity: 1;
+            transition: opacity 0.25s ease;
+            pointer-events: auto;
+            overflow: hidden;
+        }
+
+        .page-left, .page-right {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: opacity 0.25s ease, pointer-events 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            pointer-events: none;
+            padding-top: 20px;
         }
 
         .container {
@@ -30,8 +120,8 @@
 
         .container .glass {
             position: relative;
-            width: 250px;
-            height: 348px;
+            width: 200px;
+            height: 280px;
             background-size: 100% auto;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
@@ -40,7 +130,7 @@
             align-items: center;
             transition: 0.5s;
             border-radius: 14px;
-            margin: 0 -45px;
+            margin: 0 -30px;
             backdrop-filter: blur(10px);
             transform: rotate(calc(var(--r) * 1deg));
         }
@@ -64,9 +154,10 @@
         }
 
         .card {
+            color: black;
             position: relative;
-            width: 350px;
-            height: 250px;
+            width: 300px;
+            height: 200px;
             background-position: center;
             background-size: cover;
             display: flex;
@@ -74,7 +165,8 @@
             justify-content: center;
             border-radius: 15px;
             cursor: pointer;
-            }
+            margin: 10px;
+        }
 
         .card::after {
             position: absolute;
@@ -102,7 +194,7 @@
             background-size: cover;
             border-radius: 15px;
             transition: all 0.25s;
-            font-size: 25px;
+            font-size: 20px;
             text-shadow:
                 -1px -1px 0 white,
                 -1px 1px 0 white,
@@ -136,7 +228,7 @@
         }
 
         .card-7 {
-            background-image: url("img/stellaris .jpg");
+            background-image: url("img/stellaris.jpg");
         }
 
         .card-8 {
@@ -144,39 +236,91 @@
             background-image: url("img/cruelty-squad.webp");
         }
 
+        .card-9 {
+            background-image: url("img/browns-rock.jpg");
+        }
+
+        .card-10 {
+            background-image: url("img/beulah-st-wharf.jpg");
+        }
+
+        .card-11 {
+            background-image: url("img/brighton-le-sands.jpg");
+        }
+
+        .card-12 {
+            background-image: url("img/bare-island.jpg");
+        }
+
+        .card-13 {
+            background-image: url("img/yarra.jpg");
+        }
+
+        .card-14 {
+            background-image: url("img/fish.jpg");
+        }
+
+        .card-15 {
+            background-image: url("img/orzo.jpg");
+        }
+
+        .card-16 {
+            background-image: url("img/noodles.jpg");
+        }
+
+        .card-17 {
+            background-image: url("img/steak.jpg");
+        }
+
+        .card-18 {
+            background-image: url("img/kebab-chicken.jpg");
+        }
+
+        .card-19 {
+            background-image: url("img/curry.jpg");
+        }
+
+        .card-20 {
+            background-image: url("img/chicken.jpg");
+        }
+
         .card-1::after {
             content: "she just like me frfr";
             background-image: url("img/btr.gif");
+            color: pink;
         }
 
-        /*Use TrixieCyrG plain font*/
         .card-2::after {
+            font-family: "TrixieCyrG";
             content: "let's all love Lain";
             background-image: url("img/lain.gif");
         }
 
         .card-3::after {
+            font-family: "Gloria Hallelujah";
             content: "ILYSM HACHIWARE UR SO TUFF TWIN ONG";
             background-image: url("img/chiikawa.gif");
         }
 
         .card-4::after {
-            content: "feels like an acid trip";
+            content: "absolute acid trip";
             background-image: url("img/mind-game.gif");
+            color: #0067b1;
         }
 
         .card-5::after {
-            content: "im a blitz main";
+            content: "blitz main";
             background-image: url("img/r6.gif");
         }
 
         .card-6::after {
+            font-family: "Titillium Web";
             content: "the factory must grow the factory must grow the factory must grow the factory must grow the factory must grow";
             background-image: url("img/factorio.gif");
         }
 
         .card-7::after {
-            content: "space battles n stuff";
+            content: "space battles + space racism";
             background-image: url("img/stellaris.gif");
         }
 
@@ -195,77 +339,547 @@
                 1px 1px 0 #cc0808;
         }
 
+        .card-9::after {
+            content: "Browns Rock";
+        }
+
+        .card-10::after {
+            content: "Beulah St Wharf";
+        }
+
+        .card-11::after {
+            content: "Brighton-le-Sands Beach";
+        }
+
+        .card-12::after {
+            content: "Bare Island";
+        }
+
+        .card-13::after {
+            content: "Yarra Beach";
+        }
+
+        .card-14::after {
+            content: "would've cooked this but dioxins :(";
+        }
+
+        .reset-btn {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            background: rgba(128, 128, 128, 0.2);
+            border: 1px solid rgba(128, 128, 128, 0.4);
+            color: gray;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .reset-btn:hover {
+            background: rgba(128, 128, 128, 0.3);
+        }
+
+        table {
+            margin: 20px auto;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .col {
+            flex: 50%;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bolder; /* Made bolder */
+            background-color: #000; /* Black background */
+            border-radius: 30px; /* Added border-radius to make the container rounded */
+            padding: 20px; /* Added padding for better appearance */
+            height: 70px;
+            width: 300px;
+        }
+
+        .socials .icon-content {
+            margin: 0 10px;
+            position: relative;
+            font-weight: bolder; /* Made bolder */
+        }
+
+        .socials .icon-content .tooltip {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff; /* White background */
+            color: #000; /* Black text */
+            padding: 6px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-weight: bolder; /* Made bolder */
+        }
+
+        .socials .icon-content:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            top: -50px;
+        }
+
+        .socials .icon-content .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #fff; /* White icons */
+            background-color: #000; /* Black background */
+            transition: all 0.3s ease-in-out;
+            font-weight: bolder; /* Made bolder */
+        }
+
+        .socials .icon-content .link:hover {
+            box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+        }
+
+        .socials .icon-content .link svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff; /* White icons */
+        }
+
+        .socials .icon-content .link[data-social="spotify"]:hover {
+            color: #1db954;
+        }
+
+        .socials .icon-content .link[data-social="instagram"]:hover {
+            color: #cd486b;
+        }
+
+        .socials .icon-content .link[data-social="discord"]:hover {
+            color: #7289da;
+        }
+
+        .socials .icon-content .link[data-social="linkedin"]:hover {
+            color: #0a66c2;
+        }
+
     </style>
 </head>
 <body>
-    <div class="page-main">
-        <!--For this tab, make background pixel an indoor guest room-->
-        <!--When transitioning to left, use black in between and slide to it-->
-        <!--When transitioning to right, use white in between and slide to it-->
-        <h1>About Me</h1>
-        <dl>
-            <dt>Name: Jonathan</dt>
-            <dt>Degree: 2nd Year Computer Science (Security Engineering)</dt>
-            <dt>Hometown: Jakarta</dt>
-        </dl>
-    </div>
+    <div class="contain">
+        <div class="circle circle-left" onclick="expand('black')"></div>
+        <div class="circle circle-right" onclick="expand('white')"></div>
 
+        <div class="content">
+            <div class="page-main">
+                <h1>About Me</h1>
+                <dl>
+                    <dt>Name: Jonathan</dt>
+                    <dt>Degree: 2nd Year Computer Science (Security Engineering)</dt>
+                    <dt>Hometown: Jakarta</dt>
+                </dl>
+                <p>Click the circles to explore my opposite sides!</p>
+            </div>
 
-    <div class="page-left">
-        <!--For this tab, make background pixel computer screen or just a personal room-->
-        <h1><a href="https://moxfield.com/users/jonbttt">MTG!!!</a></h1>
-        <p>My Commander Decks:</p>
-        <div class="container">
-            <a href="https://moxfield.com/decks/AsTIRz5qN0SDn-VFv8CjIQ">
-                <div style="--r:5; background-image: url('https://cards.scryfall.io/large/front/4/f/4f86e7cc-2b6e-49d0-964e-bba0c51cc11d.jpg?1674058398');" class="glass"></div>
-            </a>
-            <a href="https://moxfield.com/decks/5j3p_Ku-ukqCgUSmEaZ4jw">
-                <div style="--r:-15; background-image: url('https://cards.scryfall.io/large/front/0/8/087edfc0-4d57-4c2d-95a6-e52ed8f78327.jpg?1673482678');" class="glass"></div>
-            </a>
-            <a href="https://moxfield.com/decks/PStt1Tc5IUGkw2PGeeMTxQ">
-                <div style="--r:25; background-image: url('https://cards.scryfall.io/large/front/1/4/14cc1769-e09f-43c0-9c03-979cb0a764a2.jpg?1708746040');" class="glass"></div>
-            </a>
+            <div class="page-left">
+                <h1>MTG!!!</h1>
+                <p>My <a style="color: white;" target="_blank" rel="noopener noreferrer" href="https://moxfield.com/users/jonbttt">Moxfield</a></p>
+                <p>My Commander Decks:</p>
+                <div class="container">
+                    <a target="_blank" rel="noopener noreferrer" href="https://moxfield.com/decks/AsTIRz5qN0SDn-VFv8CjIQ">
+                        <div style="--r:5; background-image: url('https://cards.scryfall.io/large/front/4/f/4f86e7cc-2b6e-49d0-964e-bba0c51cc11d.jpg?1674058398');" class="glass"></div>
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://moxfield.com/decks/5j3p_Ku-ukqCgUSmEaZ4jw">
+                        <div style="--r:-15; background-image: url('https://cards.scryfall.io/large/front/0/8/087edfc0-4d57-4c2d-95a6-e52ed8f78327.jpg?1673482678');" class="glass"></div>
+                    </a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://moxfield.com/decks/PStt1Tc5IUGkw2PGeeMTxQ">
+                        <div style="--r:25; background-image: url('https://cards.scryfall.io/large/front/1/4/14cc1769-e09f-43c0-9c03-979cb0a764a2.jpg?1708746040');" class="glass"></div>
+                    </a>
+                </div>
+
+                <h1>ANIME!!!</h1>
+                <table>
+                    <tr>
+                        <td><div class="card card-1"></div></td>
+                        <td><div class="card card-2"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="card card-3"></div></td>
+                        <td><div class="card card-4"></div></td>
+                    </tr>
+                </table>
+
+                <h1>GAMES!!!</h1>
+                <table>
+                    <tr>
+                        <td><div class="card card-5"></div></td>
+                        <td><div class="card card-6"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="card card-7"></div></td>
+                        <td><div class="card card-8"></div></td>
+                    </tr>
+                </table>
+
+                <h1>SOCIALS</h1>
+                <ul class="socials">
+                <li class="icon-content">
+                    <a
+                    href="https://open.spotify.com/user/45cdujv9i6nox3khb6dqb4egk?si=d7593cf001bc4258"
+                    aria-label="Spotify"
+                    data-social="spotify"
+                    class="link"
+                    >
+                    <svg version="1.1" viewBox="0 0 100 100">
+                        <path
+                        d="M50,4C24.7,4,4,24.7,4,50s20.6,46,46,46s46-20.6,46-46S75.4,4,50,4z M71.6,71.5c0,0,0,0.1-0.1,0.1c-0.8,1.2-2,1.8-3.2,1.8  c-0.7,0-1.4-0.2-2-0.6c-10.2-6.3-23.3-7.7-38.8-4.1c-2.1,0.6-4-0.9-4.5-2.7c-0.6-2.3,0.9-4.1,2.7-4.6c17.7-4,32.6-2.3,44.4,5  c0.9,0.4,1.5,1,1.8,1.9C72.2,69.3,72.1,70.5,71.6,71.5z M76.9,59.3L76.9,59.3c-0.8,1.1-1.9,1.9-3.2,2.1c-0.2,0-0.5,0.1-0.7,0.1  c-0.8,0-1.6-0.3-2.3-0.7c-12-7.3-30.1-9.4-43.9-5c-2.5,0.6-5-0.7-5.6-3c-0.6-2.5,0.7-4.9,3-5.5c16.5-5,37.2-2.5,51.4,6.2  c0.8,0.4,1.5,1.3,1.8,2.5C77.9,57,77.6,58.3,76.9,59.3z M83.2,45.6c-1,1.4-2.7,2.1-4.4,2.1c-0.9,0-1.9-0.2-2.7-0.7c0,0,0,0,0,0  c-13.9-8.3-37.8-9.3-51.4-5.1c-2.7,0.8-5.5-0.7-6.4-3.3c-0.8-2.7,0.7-5.6,3.3-6.4c16.2-4.8,43-3.8,59.8,6.2  C83.8,39.6,84.7,42.9,83.2,45.6C83.3,45.5,83.3,45.5,83.2,45.6z"
+                        fill="currentColor"
+                        ></path>
+                    </svg>
+                    </a>
+                    <div class="tooltip">Spotify</div>
+                </li>
+                <li class="icon-content">
+                    <a
+                    href="https://www.instagram.com/jonbttt/"
+                    aria-label="Instagram"
+                    data-social="instagram"
+                    class="link"
+                    >
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512" height="512">
+                    <g>
+                        <path fill="currentColor" d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
+                        <path fill="currentColor" d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
+                        <circle fill="currentColor" cx="18.406" cy="5.594" r="1.44"/>
+                    </g>
+                    </svg>
+                    </a>
+                    <div class="tooltip">Instagram</div>
+                </li>
+                <li class="icon-content">
+                    <a
+                    href="https://discord.com/users/513569241253937161"
+                    aria-label="Discord"
+                    data-social="discord"
+                    class="link"
+                    >
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512" height="512">
+                    <g>
+                        <path fill="currentColor" d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
+                    </g>
+                    </svg>
+                    </a>
+                    <div class="tooltip">Discord</div>
+                </li>
+                <li class="icon-content">
+                    <a
+                    href="https://linkedin.com/id/jonathanbt/"
+                    aria-label="LinkedIn"
+                    data-social="linkedin"
+                    class="link"
+                    >
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512" height="512">
+                    <g>
+                        <path fill="currentColor" id="Path_2525" d="M23.002,21.584h0.227l-0.435-0.658l0,0c0.266,0,0.407-0.169,0.409-0.376c0-0.008,0-0.017-0.001-0.025   c0-0.282-0.17-0.417-0.519-0.417h-0.564v1.476h0.212v-0.643h0.261L23.002,21.584z M22.577,20.774h-0.246v-0.499h0.312   c0.161,0,0.345,0.026,0.345,0.237c0,0.242-0.186,0.262-0.412,0.262"/>
+                        <path fill="currentColor" id="Path_2520" d="M17.291,19.073h-3.007v-4.709c0-1.123-0.02-2.568-1.564-2.568c-1.566,0-1.806,1.223-1.806,2.487v4.79H7.908   V9.389h2.887v1.323h0.04c0.589-1.006,1.683-1.607,2.848-1.564c3.048,0,3.609,2.005,3.609,4.612L17.291,19.073z M4.515,8.065   c-0.964,0-1.745-0.781-1.745-1.745c0-0.964,0.781-1.745,1.745-1.745c0.964,0,1.745,0.781,1.745,1.745   C6.26,7.284,5.479,8.065,4.515,8.065L4.515,8.065 M6.018,19.073h-3.01V9.389h3.01V19.073z M18.79,1.783H1.497   C0.68,1.774,0.01,2.429,0,3.246V20.61c0.01,0.818,0.68,1.473,1.497,1.464H18.79c0.819,0.01,1.492-0.645,1.503-1.464V3.245   c-0.012-0.819-0.685-1.474-1.503-1.463"/>
+                        <path fill="currentColor" id="Path_2526" d="M22.603,19.451c-0.764,0.007-1.378,0.633-1.37,1.397c0.007,0.764,0.633,1.378,1.397,1.37   c0.764-0.007,1.378-0.633,1.37-1.397c-0.007-0.754-0.617-1.363-1.37-1.37H22.603 M22.635,22.059   c-0.67,0.011-1.254-0.522-1.265-1.192c-0.011-0.67,0.523-1.222,1.193-1.233c0.67-0.011,1.222,0.523,1.233,1.193   c0,0.007,0,0.013,0,0.02C23.81,21.502,23.29,22.045,22.635,22.059h-0.031"/>
+                    </g>
+                    </svg>
+                    </a>
+                    <div class="tooltip">LinkedIn</div>
+                </li>
+                </ul>
+
+                <p>hmu if you wanna queue up on R6, start a Factorio/Stellaris run, or play commander</p>
+            </div>
+
+            <div class="page-right">
+                <h1>FISHING!!!</h1>
+                <p>Some spots I've been to:</p>
+                <table>
+                    <tr>
+                        <td><div class="card card-9"></div></td>
+                        <td><div class="card card-10"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="card card-11"></div></td>
+                        <td><div class="card card-12"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="card card-13"></div></td>
+                        <td><div class="card card-14"></div></td>
+                    </tr>
+                </table>
+
+                <h1>GYM!!!</h1>
+                <div class="row">
+                    <div class="col">
+                        <p>My weight progress</p>
+                        <img style="width: 80%; border-radius: 15px; padding: 5px;" src="img/weight.png">
+                    </div>
+                    <div class="col">
+                        <p>My Split</p>
+                        <p>Working sets: 2 x 6-8, 0-2 RIR with at least 3 minutes rest and 1 warm-up set</p>
+                        <h2>Day 1: Chest, Shoulders, Biceps</h2>
+                        <p>Reverse Fly Single Arm (Cable)</p>
+                        <p>Incline Bench Press (Dumbbell)</p>
+                        <p>Iso-Lateral Chest Press</p>
+                        <p>Chest Fly (Machine)</p>
+                        <p>Lateral Raise Single Arm (Cable)</p>
+                        <p>Bayesian Curl Single Arm (Cable)</p>
+                        <p>Preacher Hammer Curl Single Arm (Dumbbell)</p>
+
+                        <h2>Day 2: Legs, Abs</h2>
+                        <p>Sissy Squat (Machine)</p>
+                        <p>Hip Thrust (Machine)</p>
+                        <p>Hip Adductor (Machine)</p>
+                        <p>Seated Leg Curl</p>
+                        <p>Standing Calf Raise</p>
+                        <p>Leg Extension (Machine)</p>
+                        <p>Leg Raises (Captain's Chair)</p>
+                        <p>Cable Crunch</p>
+
+                        <h2>Day 3: Back, Shoulders, Triceps, Forearms</h2>
+                        <p>Lateral Raise Single Arm (Cable)</p>
+                        <p>Pullover (Dumbbell)</p>
+                        <p>Lat Pulldown - Close Grip</p>
+                        <p>D.Y. Row</p>
+                        <p>Rear Delt Reverse Fly (Machine)</p>
+                        <p>Triceps Rope Pushdown</p>
+                        <p>Triceps Extension (Cable)</p>
+                        <p>Meow Meow Curl</p>
+                        <p>Wrist Extension (Cable)</p>
+                    </div>
+                    <div class="col">
+                        <h2>Day 4: Cardio</h2>
+                        <p>Running</p>
+
+                        <h2>Day 5: Shoulders, Arms</h2>
+                        <p>Seated Shoulder Press (Machine)</p>
+                        <p>Lateral Raise Single Arm (Cable)</p>
+                        <p>Lateral Raise (Machine)</p>
+                        <p>Rear Delt Reverse Fly (Machine)</p>
+                        <p>Bayesian Curl Single Arm (Cable)</p>
+                        <p>Preacher Curl Single Arm (Dumbbell)</p>
+                        <p>Triceps Extension (Cable)</p>
+
+                        <h2>Day 6: Legs, Abs</h2>
+                        <p>Squat (Machine)</p>
+                        <p>Hip Thrust (Machine)</p>
+                        <p>Hip Adductor (Machine)</p>
+                        <p>Seated Leg Curl</p>
+                        <p>Standing Calf Raise</p>
+                        <p>Leg Extension (Machine)</p>
+                        <p>Leg Raises (Captain's Chair)</p>
+                        <p>Cable Crunch</p>
+
+                        <h2>Day 7: Chest, Back</h2>
+                        <p>Iso-Lateral Chest Press</p>
+                        <p>Upper Back Row</p>
+                        <p>Incline Bench Press (Dumbbell)</p>
+                        <p>Lat Pulldown - Close Grip</p>
+                        <p>Chest Fly (Machine)</p>
+                        <p>D.Y. Row</p>
+                        <p>Snatch-Grip Deficit Deadlift</p>
+
+                        <h2>Day 8: Cardio</h2>
+                        <p>Running</p>
+                    </div>
+                </div>
+
+                <h1>COOKING!!!</h1>
+                <p>Some stuff I made:</p>
+                <table>
+                    <tr>
+                        <td><div class="card card-15"></div></td>
+                        <td><div class="card card-16"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="card card-17"></div></td>
+                        <td><div class="card card-18"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="card card-19"></div></td>
+                        <td><div class="card card-20"></div></td>
+                    </tr>
+                </table>
+
+                <h1>SOCIALS</h1>
+                <ul class="socials">
+                <li class="icon-content">
+                    <a
+                    href="https://open.spotify.com/user/45cdujv9i6nox3khb6dqb4egk?si=d7593cf001bc4258"
+                    aria-label="Spotify"
+                    data-social="spotify"
+                    class="link"
+                    >
+                    <svg version="1.1" viewBox="0 0 100 100">
+                        <path
+                        d="M50,4C24.7,4,4,24.7,4,50s20.6,46,46,46s46-20.6,46-46S75.4,4,50,4z M71.6,71.5c0,0,0,0.1-0.1,0.1c-0.8,1.2-2,1.8-3.2,1.8  c-0.7,0-1.4-0.2-2-0.6c-10.2-6.3-23.3-7.7-38.8-4.1c-2.1,0.6-4-0.9-4.5-2.7c-0.6-2.3,0.9-4.1,2.7-4.6c17.7-4,32.6-2.3,44.4,5  c0.9,0.4,1.5,1,1.8,1.9C72.2,69.3,72.1,70.5,71.6,71.5z M76.9,59.3L76.9,59.3c-0.8,1.1-1.9,1.9-3.2,2.1c-0.2,0-0.5,0.1-0.7,0.1  c-0.8,0-1.6-0.3-2.3-0.7c-12-7.3-30.1-9.4-43.9-5c-2.5,0.6-5-0.7-5.6-3c-0.6-2.5,0.7-4.9,3-5.5c16.5-5,37.2-2.5,51.4,6.2  c0.8,0.4,1.5,1.3,1.8,2.5C77.9,57,77.6,58.3,76.9,59.3z M83.2,45.6c-1,1.4-2.7,2.1-4.4,2.1c-0.9,0-1.9-0.2-2.7-0.7c0,0,0,0,0,0  c-13.9-8.3-37.8-9.3-51.4-5.1c-2.7,0.8-5.5-0.7-6.4-3.3c-0.8-2.7,0.7-5.6,3.3-6.4c16.2-4.8,43-3.8,59.8,6.2  C83.8,39.6,84.7,42.9,83.2,45.6C83.3,45.5,83.3,45.5,83.2,45.6z"
+                        fill="currentColor"
+                        ></path>
+                    </svg>
+                    </a>
+                    <div class="tooltip">Spotify</div>
+                </li>
+                <li class="icon-content">
+                    <a
+                    href="https://www.instagram.com/jonbttt/"
+                    aria-label="Instagram"
+                    data-social="instagram"
+                    class="link"
+                    >
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512" height="512">
+                    <g>
+                        <path fill="currentColor" d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z"/>
+                        <path fill="currentColor" d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/>
+                        <circle fill="currentColor" cx="18.406" cy="5.594" r="1.44"/>
+                    </g>
+                    </svg>
+                    </a>
+                    <div class="tooltip">Instagram</div>
+                </li>
+                <li class="icon-content">
+                    <a
+                    href="https://discord.com/users/513569241253937161"
+                    aria-label="Discord"
+                    data-social="discord"
+                    class="link"
+                    >
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512" height="512">
+                    <g>
+                        <path fill="currentColor" d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z"/>
+                    </g>
+                    </svg>
+                    </a>
+                    <div class="tooltip">Discord</div>
+                </li>
+                <li class="icon-content">
+                    <a
+                    href="https://linkedin.com/id/jonathanbt/"
+                    aria-label="LinkedIn"
+                    data-social="linkedin"
+                    class="link"
+                    >
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="512" height="512">
+                    <g>
+                        <path fill="currentColor" id="Path_2525" d="M23.002,21.584h0.227l-0.435-0.658l0,0c0.266,0,0.407-0.169,0.409-0.376c0-0.008,0-0.017-0.001-0.025   c0-0.282-0.17-0.417-0.519-0.417h-0.564v1.476h0.212v-0.643h0.261L23.002,21.584z M22.577,20.774h-0.246v-0.499h0.312   c0.161,0,0.345,0.026,0.345,0.237c0,0.242-0.186,0.262-0.412,0.262"/>
+                        <path fill="currentColor" id="Path_2520" d="M17.291,19.073h-3.007v-4.709c0-1.123-0.02-2.568-1.564-2.568c-1.566,0-1.806,1.223-1.806,2.487v4.79H7.908   V9.389h2.887v1.323h0.04c0.589-1.006,1.683-1.607,2.848-1.564c3.048,0,3.609,2.005,3.609,4.612L17.291,19.073z M4.515,8.065   c-0.964,0-1.745-0.781-1.745-1.745c0-0.964,0.781-1.745,1.745-1.745c0.964,0,1.745,0.781,1.745,1.745   C6.26,7.284,5.479,8.065,4.515,8.065L4.515,8.065 M6.018,19.073h-3.01V9.389h3.01V19.073z M18.79,1.783H1.497   C0.68,1.774,0.01,2.429,0,3.246V20.61c0.01,0.818,0.68,1.473,1.497,1.464H18.79c0.819,0.01,1.492-0.645,1.503-1.464V3.245   c-0.012-0.819-0.685-1.474-1.503-1.463"/>
+                        <path fill="currentColor" id="Path_2526" d="M22.603,19.451c-0.764,0.007-1.378,0.633-1.37,1.397c0.007,0.764,0.633,1.378,1.397,1.37   c0.764-0.007,1.378-0.633,1.37-1.397c-0.007-0.754-0.617-1.363-1.37-1.37H22.603 M22.635,22.059   c-0.67,0.011-1.254-0.522-1.265-1.192c-0.011-0.67,0.523-1.222,1.193-1.233c0.67-0.011,1.222,0.523,1.233,1.193   c0,0.007,0,0.013,0,0.02C23.81,21.502,23.29,22.045,22.635,22.059h-0.031"/>
+                    </g>
+                    </svg>
+                    </a>
+                    <div class="tooltip">LinkedIn</div>
+                </li>
+                </ul>
+
+                <p>hmu if you wanna go fishing, need a gymbro, or know a good fishing and camping spot</p>
+            </div>
         </div>
 
-        <h1>ANIME!!!</h1>
-        <table style="margin-left: auto; margin-right: auto;">
-            <tr>
-                <td><div class="card card-1"></div></td>
-                <td><div class="card card-2"></div></td>
-            </tr>
-            <tr>
-                <td><div class="card card-3"></div></td>
-                <td><div class="card card-4"></div></td>
-            </tr>
-        </table>
-
-        <h1>GAMES!!!</h1>
-        <table style="margin-left: auto; margin-right: auto;">
-            <tr>
-                <td><div class="card card-5"></div></td>
-                <td><div class="card card-6"></div></td>
-            </tr>
-            <tr>
-                <td><div class="card card-7"></div></td>
-                <td><div class="card card-8"></div></td>
-            </tr>
-        </table>
+        <div class="circle-expand"></div>
+        <button class="reset-btn" onclick="reset()">🡨 Back</button>
     </div>
 
-    <div class="page-right">
-        <!--For this tab, make background pixel outdoors kinda thing-->
-        <h1>FISHING!!!</h1>
-        <!--For fishing, add picture of that one fish and map of spots ive been to (Bare Island, Mascot Rock Jetty, Browns Rock, Beulah Street Wharf, Yarra Beach)-->
-        <h1>CAMPING!!!</h1>
-        <!--For camping/stargazing, add picture of stargazing in Ku-Ring-Gai-->
-        <h1>GYM!!!</h1>
-        <!--For gym, add a single face-censored pic and split-->
-    </div>
+    <script>
+        function expand(color) {
+            const circleLeft = document.querySelector('.circle-left');
+            const circleRight = document.querySelector('.circle-right');
+            const circleExpand = document.querySelector('.circle-expand');
+            const pageMain = document.querySelector('.page-main');
+            const pageLeft = document.querySelector('.page-left');
+            const pageRight = document.querySelector('.page-right');
+            const content = document.querySelector('.content');
 
-<div>
-    <h1>SOCIALS</h1>
-        <div class="page-left"><p>hmu if you wanna queue up on R6, start a Factorio/Stellaris run, or play commander</p></div>
-        <div class="page-right"><p>hmu if you wanna go fishing, need a gymbro, or know a good fishing and camping spot</p></div>
-    </div>
+            if (color == 'black') {
+                circleExpand.style.backgroundColor = 'black';
+                circleExpand.style.left = '-200px';
+                circleExpand.style.right = 'auto';
+                circleExpand.style.top = '50%';
+                circleExpand.style.marginTop = '-200px';
+                circleExpand.style.width = '400px';
+                circleExpand.style.height = '400px';
+
+                setTimeout(() => {
+                    circleLeft.style.opacity = '0';
+                    circleRight.style.opacity = '0';
+                    pageMain.style.opacity = '0';
+                    pageMain.style.pointerEvents = 'none';
+                    pageLeft.style.opacity = '1';
+                    pageLeft.style.pointerEvents = 'auto';
+                    pageRight.style.opacity = '0';
+                    pageRight.style.pointerEvents = 'none';
+                    content.style.color = 'white';
+                }, 250);
+            } else {
+                circleExpand.style.backgroundColor = 'white';
+                circleExpand.style.left = 'auto';
+                circleExpand.style.right = '-200px';
+                circleExpand.style.top = '50%';
+                circleExpand.style.marginTop = '-200px';
+                circleExpand.style.width = '400px';
+                circleExpand.style.height = '400px';
+
+                setTimeout(() => {
+                    circleLeft.style.opacity = '0';
+                    circleRight.style.opacity = '0';
+                    pageMain.style.opacity = '0';
+                    pageMain.style.pointerEvents = 'none';
+                    pageLeft.style.opacity = '0';
+                    pageLeft.style.pointerEvents = 'none';
+                    pageRight.style.opacity = '1';
+                    pageRight.style.pointerEvents = 'auto';
+                    content.style.color = 'black';
+                }, 250);
+            }
+
+            setTimeout(() => {
+                const maxDimension = Math.max(window.innerWidth, window.innerHeight) * 2.5;
+                circleExpand.style.transform = `scale(${maxDimension / 400})`;
+            }, 50);
+        }
+
+        function reset() {
+            const circleLeft = document.querySelector('.circle-left');
+            const circleRight = document.querySelector('.circle-right');
+            const circleExpand = document.querySelector('.circle-expand');
+            const pageMain = document.querySelector('.page-main');
+            const pageLeft = document.querySelector('.page-left');
+            const pageRight = document.querySelector('.page-right');
+            const content = document.querySelector('.content');
+
+            circleExpand.style.transform = 'scale(0)';
+
+            setTimeout(() => {
+                circleLeft.style.opacity = '1';
+                circleRight.style.opacity = '1';
+                pageMain.style.opacity = '1';
+                pageMain.style.pointerEvents = 'auto';
+                pageLeft.style.opacity = '0';
+                pageLeft.style.pointerEvents = 'none';
+                pageRight.style.opacity = '0';
+                pageRight.style.pointerEvents = 'none';
+                content.style.color = 'white';
+            }, 250);
+        }
+    </script>
 </body>
 </html>
